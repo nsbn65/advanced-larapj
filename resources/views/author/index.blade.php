@@ -10,18 +10,10 @@ tr:nth-child(odd) td {
   background-color: #FFFFFF;
 }
 
-td table {
-  margin: 0 auto;
-}
-
 td {
   padding: 25px 40px;
   background-color: #EEEEEE;
   text-align: center;
-}
-
-td table tbody tr td {
-  background-color: #EEEEEE !important;
 }
 </style>
 @section('title', 'author.index.blade.php')
@@ -32,30 +24,16 @@ td table tbody tr td {
     <th>Author</th>
     <th>Book</th>
   </tr>
-  @foreach ($hasbooks as $book)
+  @foreach ($authors as $author)
   <tr>
     <td>
-      {{$book->getDetail()}}
+      {{$author->getDetail()}}
     </td>
     <td>
-      <table>
-        @foreach ($book->books as $book)
-        <tr>
-          <td>{{ $book->getTitle() }}</td>
-        </tr>
-        @endforeach
-      </table>
+      @if ($author->book != null)
+      {{ $author->book->getTitle() }}
+      @endif
     </td>
-  </tr>
-  @endforeach
-</table>
-<table>
-  <tr>
-    <th>Author</th>
-  </tr>
-  @foreach ($nobooks as $book)
-  <tr>
-    <td>{{ $book->getDetail() }}</td>
   </tr>
   @endforeach
 </table>
